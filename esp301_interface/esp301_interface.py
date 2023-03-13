@@ -4,6 +4,15 @@
      applications too.
 
 '''
+
+'''Todo:
+Handle hitting mech stops, either stop short, or update logging to handle it
+
+Update init to check/set default velocites and especially homing speed.
+
+See if pyserial's timeout can be updated after init so if the speed is lowered,
+ timeout can be increased accordingly
+'''
 import time
 import os.path
 import serial
@@ -25,14 +34,14 @@ class esp301_interface:
 				       #  by specifying the file name
         
         self.a = axis # internal axis variable
-        self.dev = serial.Serial(port,baudrate=baudrate,timeout=30) # assign device object using serial, set baudrate and
+        self.dev = serial.Serial(port,baudrate=baudrate,timeout=150) # assign device object using serial, set baudrate and
                                                #  and read timeout, otherwise defaults are fine
 					       # note, if the rotation speed is set particularly
 					       #  slow, timeout may need to be increased
         err_msg = self._TE() # initial error check
         if float(err_msg) != 0:
             print('Error encountered during initial connection to controller:',err_msg)
-	    print('See ESP 301 manual for lookup table (often can be ignored)')
+            print('See ESP 301 manual for lookup table (often can be ignored)')
 
 
         if(initialize):
@@ -60,6 +69,10 @@ class esp301_interface:
 
     def _PR(self,pos): # rotate the axis by the relative position pos
         bytesent = self.dev.write(b'%dPR%.3f\r'%(self.a,pos))
+
+    def _VA(self,vel=30.000): # set rotation velocity for movement commands
+         # The default on power cycle is 30 deg/s, no arg resets to def.
+        bytesent = self.dev.write(b'%dVA%.3f\r'%(self.a,vel))
 
     def _TP(self): # tell position of axis
         bytesent = self.dev.write(b'%dTP\r'%self.a) # this asks for output, so tell to read for output.
@@ -117,6 +130,10 @@ class esp301_interface:
         time.sleep(1)
         out_pos = self._TP() 
         self._logtime(out_pos)
+
+    def setvel(self,vel=30.000): # basically all this does is simply call _VA, would be good to
+                          #  build a feature whereby it updates pyserial timeout accoridng to speed
+        self._VA(vel)
 
     def pass_cmd(self,cmdstr,read=False): # Allow to pass any command to the esp301, formatting it appropriately
                                     #  really a sort of bypass or debug thing, note that it may mess up the log

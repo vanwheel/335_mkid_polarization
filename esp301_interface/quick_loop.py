@@ -10,9 +10,13 @@ import time
 
 ## Below are inputs to specify
 
-# port details
-port = '/dev/ttyUSB0' # will need to be specified
-baud = 19200 # the default for rs232 config on the controller
+# port details (rs232 to usb adaptor is typical use case)
+#port = '/dev/ttyUSB0' # will need to be specified
+#baud = 19200 # the default for rs232 config on the controller
+
+# port details for my local testing on windows with newport usb connection
+port = 'COM6'
+baud = 921600
 
 # List of angles to visit (Here I avoid going past +-170 degree due to mech stops)
 angles = np.arange(-150,150,30,dtype=float)
@@ -24,11 +28,11 @@ t_wait = 5 # seconds
 
 
 ## Below the script is executed
-esp = esp301_interface.esp301_interface(port=port,baudrate=baud) # port name of controller
+esp = esp301_interface.esp301_interface(port=port,baudrate=baud,initialize=False) # port name of controller
                 # There are other args but defaults should be fine
                 # Expects motor connected to axis 1, but can be specified
 # begin logging
-esp.startlog('quick_loop_out.txt')
+esp.startlog('mar_13_2023_quick_loop_2nd.txt')
 
 for angle in angles:
     esp.moveto(angle)
