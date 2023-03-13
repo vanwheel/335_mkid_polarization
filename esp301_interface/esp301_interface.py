@@ -32,7 +32,7 @@ class esp301_interface:
         err_msg = self._TE() # initial error check
         if float(err_msg) != 0:
             print('Error encountered during initial connection to controller:',err_msg)
-	    print('See ESP 301 manual for lookup table (often can be ignored)'
+	    print('See ESP 301 manual for lookup table (often can be ignored)')
 
 
         if(initialize):

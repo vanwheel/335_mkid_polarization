@@ -24,11 +24,11 @@ t_wait = 5 # seconds
 
 
 ## Below the script is executed
-esp = esp301_interface.esp301_interface(port=port,baudreate=baud) # port name of controller
+esp = esp301_interface.esp301_interface(port=port,baudrate=baud) # port name of controller
                 # There are other args but defaults should be fine
                 # Expects motor connected to axis 1, but can be specified
 # begin logging
-esp.startlog('quick_const_out.txt')
+esp.startlog('quick_loop_out.txt')
 
 for angle in angles:
     esp.moveto(angle)
