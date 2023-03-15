@@ -37,7 +37,7 @@ class esp301_interface:
         self.dev = serial.Serial(port,baudrate=baudrate,timeout=150) # assign device object using serial, set baudrate and
                                                #  and read timeout, otherwise defaults are fine
 					       # note, if the rotation speed is set particularly
-					       #  slow, timeout may need to be increased
+					       #  slow, timeout may need to be very large
         err_msg = self._TE() # initial error check
         if float(err_msg) != 0:
             print('Error encountered during initial connection to controller:',err_msg)

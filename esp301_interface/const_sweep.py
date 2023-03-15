@@ -4,6 +4,7 @@
 
 
 import esp301_interface
+import time
 
 ## Below are inputs to specify
 
@@ -30,8 +31,10 @@ esp = esp301_interface.esp301_interface(port=port,baudrate=baud,initialize=False
 esp.setvel() # make sure set to default speed first
 
 esp.moveto(angles[0]) # go to start angle
+print('start',time.time())
 esp.setvel(spd) # change to desired speed
 esp.moveto(angles[1]) # move to stop angle
+print('stop',time.time())
 
 esp.setvel() # return to default speed
 

@@ -1,0 +1,38 @@
+Log of the constant rotation polarization data taken on Mar 15 2023
+Vance Wheeler
+
+First batch of mkids:
+
+Run 1: 
+start 1678917808.8328273
+stop 1678917923.2218223
+
+Run 2: No Chop, window open
+start 1678918482.746662
+stop 1678918597.1369529
+
+Run 3: Plate and echosorb obscuring blackbody
+tart 1678918714.8849077
+stop 1678918829.2788498
+
+Run 4: filter angled about vertical axis significantly
+tart 1678919066.5420501
+stop 1678919180.9334812
+
+Second batch of mkids:
+
+Run 5: filter still angled
+start 1678920489.707737
+stop 1678920604.1031191
+
+Run 6: filter straightened, standard run
+start 1678920713.690702
+stop 1678920828.0860257
+
+Run 7: Plate and echosorb obscuring blackbody
+tart 1678921041.160243
+stop 1678921155.5590441
+
+Run 8: Filter angled with plate+echosorb
+tart 1678921288.1097953
+stop 1678921402.5088866
