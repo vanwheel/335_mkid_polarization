@@ -38,4 +38,10 @@ print('stop',time.time())
 
 esp.setvel() # return to default speed
 
+# for repeated measurements, wait a bit then return to first angle bound
+time.sleep(10)
+esp.moveto(angles[0])
+# now ready for the next
+
+
 esp.close()

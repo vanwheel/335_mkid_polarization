@@ -1,7 +1,3 @@
-# This is just an example of how to use esp301_interface.py basic commands.
-#  So far I have usually run from command line very interactively, but this could obviously
-#  be put in a script to loop pre defined angles.
-
 # VW Mar 9 2023 - This is a quick dirty script used to run a loop of angles
 
 import esp301_interface
@@ -32,7 +28,7 @@ esp = esp301_interface.esp301_interface(port=port,baudrate=baud,initialize=False
                 # There are other args but defaults should be fine
                 # Expects motor connected to axis 1, but can be specified
 # begin logging
-esp.startlog('outputs/quick_loop/quick_loop_out.txt')
+esp.startlog('outputs/quick_loop/quick_loop_apr_4_2023.txt')
 
 for angle in angles:
     esp.moveto(angle)
