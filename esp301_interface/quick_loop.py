@@ -28,11 +28,11 @@ esp = esp301_interface.esp301_interface(port=port,baudrate=baud,initialize=False
                 # There are other args but defaults should be fine
                 # Expects motor connected to axis 1, but can be specified
 # begin logging
-esp.startlog('outputs/quick_loop/quick_loop_apr_4_2023.txt')
+#esp.startlog('outputs/quick_loop/quick_loop_out.txt')
 
 for angle in angles:
     esp.moveto(angle)
     time.sleep(t_wait) # wait roughly this time
 
-esp.endlog()
+#esp.endlog()
 esp.close()
